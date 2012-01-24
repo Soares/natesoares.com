@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block head %}
+<h1>Page not found</h1>
+{% endblock %}
+
+{% block content %}
+<p>
+    {% if message %}
+        {{ message }}
+    {% else %}
+        That page could not be found. Maybe you followed a link to an entry that is not yet finished.
+        In that case, please try again later. Sorry for the inconvenience!
+    {% endif %}
+</p>
+{% endblock %}

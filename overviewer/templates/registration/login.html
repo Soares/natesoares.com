@@ -1,0 +1,32 @@
+{% extends "justbare.html" %}
+{% load utilities %}
+
+{% block style %}
+{{ block.super }}
+{% style "login" %}
+{% endblock %}
+
+
+{% block content %}
+{% if form.errors %}
+<p class="warning">Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if collision %}
+<p class="warning">A user by that name already exists.</p>
+{% endif %}
+
+<div class="forms">
+    <div class="left">
+        <form method="post" action="{% url django.contrib.auth.views.login %}">
+            <input type="hidden" name="next" value="{{ next }}">
+            <table>{{ form }}</table>
+            <input class="post" type="submit" value="login">
+        </form>
+    </div>
+
+    <div class="right">
+        {% include "parts/register.html" %}
+    </div>
+</div>
+{% endblock %}

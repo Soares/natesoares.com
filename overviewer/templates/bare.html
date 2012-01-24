@@ -1,0 +1,86 @@
+{% load utilities %}
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+        <title>
+            {% block title %}
+            {{ object|default:"Nate Soares" }}
+            {% endblock %}
+        </title>
+
+        {% block favicon %}
+        <link rel="icon" type="image/png" href="/media/images/favicon.png">
+        {% endblock %}
+
+        <!--
+            Why hello there, reader who took care to read the source of my web page! How are you feeling?
+            I try to keep this source as clean as possible, but as the page is dynamically generated, the
+            result that you see may not be too pretty. Feel free to snoop around, and don't hesitate to
+            drop me an email if you want to know how or why something works. More importantly, if you see
+            that I'm doing something stupid, then please drop me a message pointing out my mistakes. Any
+            suggestions or pointers would also be very much appreciated.
+
+            Thank you for your time, and enjoy!
+
+            -Nate
+        -->
+        {% block script %}
+        {% endblock %}
+
+        {% block style %}
+        {% style "reset" %}
+        {% style "utilities" %}
+        {% style "base" %}
+        {% endblock %}
+
+        {% block feeds %}
+        {% feeds "all" "All updates" %}
+        {% for s in sections %}
+        {% if not s.private or s|equals:section %}
+        {% feeds s s %}
+        {% endif %}
+        {% endfor %}
+        {% endblock %}
+
+        {% block remember %}
+        {% endblock %}
+    </head>
+    <body>
+        <div id="background">
+            <div id="color">
+
+
+                <div id="header">
+                    {% include "parts/header.html" %}
+                </div>
+
+
+                <div id="notes-search">
+                    <div id="notes">
+                        {% block notes %}
+                        {% endblock %}
+                    </div>
+                    <form id="search" action="http://www.google.com/search">
+                        <input type="hidden" name="sitesearch" value="natesoares.com" />
+                        <input type="text" name="q" />
+                        <input id="google-search" type="submit" value="Search" /><br />
+                        <label class="right" for="google-search">Powered by google</label>
+                    </form>
+                </div>
+
+
+                {% block main %}
+                {% endblock %}
+
+
+                <div id="footer">
+                    {% include "parts/footer.html" %}
+                </div>
+
+
+            </div>
+        </div>
+    </body>
+</html>
+

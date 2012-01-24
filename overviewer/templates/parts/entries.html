@@ -1,0 +1,19 @@
+{% load threads %}
+<li {% if not object.published %}class="warning"{% endif %}>
+
+    {% ifequal object self %}
+    <b>{{ object }}</b>
+    {% else %}
+    <a href="{{ object.get_absolute_url }}" title="{{ object.subtext }}">{{ object }}</a>
+    {% endifequal %}
+
+    {% if object.entries.not_empty and object|should_open_in:self and depth%}
+    {% with depth|add:-1 as depth %}
+    <ol>
+        {% for object in object|entries:user %}
+        {% with "parts/entries.html" as file %}{% include file %}{% endwith %}
+        {% endfor %}
+    </ol>
+    {% endwith %}
+    {% endif %}
+</li>

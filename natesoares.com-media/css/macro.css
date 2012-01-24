@@ -1,0 +1,219 @@
+html, body {
+    height: 100%;
+}
+
+tr, th, td {
+    margin: 0;
+}
+
+#background {
+    overflow: auto;
+    height: 100%;
+}
+
+#right {
+    width: 23%;
+    height: 100%;
+	float: right;
+}
+
+#right .module a {
+    white-space: nowrap;
+    overflow: hidden;
+    margin: .2em;
+}
+
+#search form {
+	text-align: left;
+}
+
+#search [name=q] {
+	width: 90%;
+}
+
+#right .module {
+    margin: 2em 1.5em;
+
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+#right .module .spaced {
+    margin-top: .8em;
+}
+
+#right .module.closed .body {
+    display: none;
+}
+
+#right .module.closable .opener {
+    cursor: pointer;
+}
+
+#main-column {
+    padding: 0;
+    margin: 0;
+    width: 75%;
+    height: 100%;
+    empty-cells: show;
+    overflow: auto;
+
+    min-height: 42em; /* Hack to keep #main-column taller than #right */
+}
+
+
+#top {
+    vertical-align: top;
+    height: 100%;
+}
+
+#outside {
+    height: 100%;
+    min-height: 2em;
+}
+
+#main-column .topcell {
+    width: 100%;
+}
+
+#main-column .main {
+    width: 100%;
+
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+#header img {
+    width: 100%;
+}
+
+#head {
+    float: left;
+    width: auto;
+}
+
+#head .header {
+    margin-bottom: 0;
+}
+
+#head .subheader {
+    margin-top: .1em;
+    margin-left: 3em;
+    margin-bottom: 2em;
+}
+
+#head .summary {
+    margin-top: -1.5em;
+    margin-left: 3em;
+}
+
+#summary {
+    display: none;
+    max-width: 500px;
+    margin-bottom: 1em;
+}
+
+#location {
+    float: right;
+    width: auto;
+}
+
+.description {
+	clear: both;
+}
+
+#message {
+    margin-left: 2em;
+	margin-bottom: 2em;
+    clear: both;
+}
+
+#detail {
+    margin-bottom: 2em;
+}
+
+#enddata {
+    overflow: auto;
+}
+
+#enddata .links {
+    float: left;
+    width: auto;
+}
+
+#enddata .links ul {
+    margin-top: 0;
+    margin-bottom: .2em;
+}
+
+#enddata .info {
+    float: right;
+    width: auto;
+}
+
+table.navigation {
+    width: 100%;
+    margin: 0;
+}
+
+table.navigation .left {
+    float: none;
+    width: 30%;
+}
+
+table.navigation .right {
+    float: none;
+    width: 30%;
+}
+
+table .navigation .middle {
+    margin: 0 auto;
+}
+
+#footer {
+    overflow: auto;
+}
+
+#main {
+	overflow: auto;
+}
+
+#positioner {
+	float: right;
+	overflow: hidden;
+}
+
+#content {
+    clear: both;
+}
+
+#content table {
+    overflow: auto;
+}
+
+#content p {
+	clear: both;
+    margin-bottom: 24px;
+    max-width: 800px;
+}
+
+#content ol.p li {
+	margin: .2em;
+}
+
+#content ul {
+	clear: both;
+}
+
+#content code {
+	display: inline-block;
+	overflow: auto;
+}
+
+#content p + pre {
+	margin-top: -12px;
+}

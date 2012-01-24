@@ -1,0 +1,57 @@
+{% load threads %}
+{% load section %}
+{% load utilities %}
+
+
+{% block categories %}
+{% for s in sections %}
+    <a class="section {{ s }}
+        {% ifequal section s %}selected{% endifequal %}
+        {% if s.private %}private{% endif %}" href="{% section_default s %}{{ tags|rqualify:"tag" }}">{{ s|title }}</a>
+{% endfor %}
+{% endblock %}
+
+
+{% if user.is_staff %}
+    {% if section and object %}
+        <form class="option" method="post">
+            {% if object.ancestor.enable_comments %}
+                <input class="smallgrey" type="submit" name="disable-comments" value="[disable comments]">
+            {% else %}
+                <input class="smallgrey" type="submit" name="enable-comments" value="[enable comments]">
+            {% endif %}
+            {% if not object.published %}
+                <input class="smallgrey" type="submit" name="publish" value="[publish]">
+                {% if object.ancestor.entries.not_empty %}
+                <input class="smallgrey" type="submit" name="publish-all" value="[publish all]">
+                {% endif %}
+            {% else %}
+                <input class="smallgrey" type="submit" name="pull" value="[pull]">
+            {% endif %}
+            <a class="smallgrey" href="{{ object|edit_url }}">[edit]</a>
+            <a class="smallgrey" href="{{ section.model|add_url }}">[add]</a>
+        </form>
+    {% else %}
+    {% if section %}
+        <div class="option">
+            <a class="smallgrey" href="{{ section.model|add_url }}">[add]</a>
+        </div>
+    {% endif %}
+    {% endif %}
+{% endif %}
+
+
+{# User options #}
+{% if user.is_authenticated %}
+<div class="option">
+    <span class="first">Logged in as {{ user }}.</span>
+    <a class="smallgrey" href="/logout/?next={{ object.get_absolute_url }}">[logout]</a>
+</div>
+{% endif %}
+
+
+{% if user.is_staff and section and object and not object.published%}
+<div class="option">
+    <span class="small first warning">This entry is invisible.</span>
+</div>
+{% endif %}

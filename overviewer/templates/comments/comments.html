@@ -1,0 +1,44 @@
+{% load threads %}
+{% load utilities %}
+{% load commentutils %}
+{% with object as ancestor %}
+<div class="hidden" id="login-register" title="Login or create an account">
+    Registered users may edit their own comments.
+    <div class="left">
+        <form method="post" action="{% url django.contrib.auth.views.login %}">
+            <input type="hidden" name="next" value="{{ ancestor.get_absolute_url }}">
+            <table>
+                <tr><th>Name:</th><td><input type="text" name="username"></td></tr>
+                <tr><th>Password:</th><td><input type="password" name="password"></td></tr>
+            </table>
+            <input class="post" type="submit" name="login" value="login">
+        </form>
+    </div>
+    <div class="right">
+        {% with object.get_absolute_url as next %}{% include "parts/register.html" %}{% endwith %}
+    </div>
+</div>
+<div class="count">
+    <div class="container" id="comment-top">
+        <a name="comment-top"></a>
+        <span class="left">{{ object|comment_count }} comments so far.</span>
+        {% if ancestor.enable_comments %}
+            {% ifequal reply_to "this" %}
+            <a class="right novisit canceler" id="main-add" href="#comment-top">Cancel</a>
+            {% else %}
+            <a class="right novisit replier" id="main-add" href="?reply_to=this#comment-top">Add your own</a>
+            {% endifequal %}
+        {% endif %}
+    </div>
+    {% if ancestor.enable_comments %}
+    <div id="comment-adder" {% ifnotequal reply_to "this" %}class="hidden"{% endifnotequal %}>
+        {% include "comments/addform.html" %}
+    </div>
+    {% endif %}
+</div>
+
+{% with comment_depth as depth %}
+{% include "comments/showcomments.html" %}
+{% endwith %}
+
+{% endwith %}

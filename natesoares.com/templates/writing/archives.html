@@ -1,0 +1,36 @@
+{% extends 'base_list.html' %}
+{% load tags %}
+{% load utilities %}
+{% load archives %}
+
+
+{% block title %}
+Archives for {{month|datetime:"%B, %Y"}}
+{% endblock %}
+
+
+{% block uppernav %}
+{% include 'writing/parts/date_nav.html' %}
+{% endblock %}
+
+
+{% block head %}
+<h1 class="header">
+    Archives for {{ month|datetime:"%B, %Y" }}
+</h1>
+{% endblock %}
+
+
+{% block object %}
+<a href="{{ object.get_absolute_url }}{{ qualifier }}" title="{{ object.description }}">{{ object }}</a>
+{% endblock %}
+
+
+{% block message %}
+{% if message %}{{ message }}{% else %}{{ block.super }}{% endif %}
+{% endblock %}
+
+
+{% block lowernav %}
+{% include 'writing/parts/date_nav.html' %}
+{% endblock %}

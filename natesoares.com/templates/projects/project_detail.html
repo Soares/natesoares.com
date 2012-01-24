@@ -1,0 +1,22 @@
+{% extends 'standard_detail.html' %}
+{% load projects %}
+{% load utilities %}
+
+
+{% block style %}
+{{ block.super }}
+{{ "project"|style:"style0/" }}
+{% endblock %}
+
+
+{% block detail %}
+{{ block.super }}
+<tr id="phase" class="detail">
+    <th class="head">Phase: </th>
+    <td class="body phase-{{ object.phase|phase|lower }}">{{ object.phase|phase }}</td>
+</tr>
+{% endblock %}
+
+{% block summary %}
+{{ object.description|markdown }}
+{% endblock %}

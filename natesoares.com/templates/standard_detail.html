@@ -1,0 +1,43 @@
+{% extends 'base_detail.html' %}
+{% load common %}
+{% load utilities %}
+
+{% block uppernav %}
+{% include 'parts/standard_nav.html' %}
+{% endblock %}
+
+
+{% block content %}
+<table id="detail">
+    {% block detail %}
+    <tr id="began" class="detail">
+        <th class="head">Began:</th><td class="body">{{ object.began|datetime:"%B %d, %Y" }}</td>
+    </tr>
+    {% if object.ended %}
+    <tr id="ended" class="detail">
+        <th class="head">Ended:</th><td class="body">{{ object.ended|datetime:"%B %d, %Y" }}</td>
+    </tr>
+    {% endif %}
+    {% endblock %}
+</table>
+{% block summary %}
+{{ object.summary|markdown }}
+{% endblock %}
+{% endblock %}
+
+
+{% block links %}
+{% if object|has_visible_writing %}
+<h6>Entries about this {{ object|single }}:</h6>
+<ul>
+    {% for entry in object|visible_writing %}
+    <li><a href="{{ entry.get_absolute_url }}{{ object|qualify }}">{{ entry }}</a></li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
+
+
+{% block lowernav %}
+{% include 'parts/standard_nav.html' %}
+{% endblock %}

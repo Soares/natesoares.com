@@ -1,0 +1,25 @@
+#content .entries {
+    font-size: 18px;
+    list-style: none;
+    margin-left: 0;
+    font-weight: normal;
+}
+
+#content .entries .none { list-style: none; }
+#content .entries ol {
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    margin-left: 2em;
+}
+
+#content .entries ol li a, #content .entries ol li b { font-size: 16px; }
+#content .entries ol li { margin: 0; padding: 0; list-style: upper-roman; }
+#content .entries ol ol li { list-style: lower-roman; }
+#content .entries ol ol ol li { list-style: lower-latin; }
+#content .entries ol ol ol ol li { list-style: decimal; }
+#content .entries .warning li { color: #800; }
+#content .entries .warning a, #content .warning a:visited { color: red; }
+#content .top .entries { margin-bottom: 3em; margin-top: 0; }
+#content .bottom .entries { margin-bottom: 0; margin-top: 6em; }

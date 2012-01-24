@@ -1,0 +1,42 @@
+{% load utilities %}
+{% load meta %}
+{# Static navigation module #}
+<div class="module" id="main-navigation">
+    <a href="/welcome/">About Nate</a>
+    <a href="/about/">About the Site</a>
+    <a href="/writing/">Archives</a>
+    <a href="/projects/">Projects</a>
+</div>
+
+{# Updates module #}
+<div class="closable module" id="recent-writing">
+    <span class="opener"></span><span class="head">Recent Entries</span>
+    <div class="body">
+        {% recent_writing_updates 4 as base_recent %}
+        {% for entry in base_recent %}
+        <a href="{{ entry.get_absolute_url }}" title="{{ entry }}">{{ entry }}</a>
+        {% endfor %}
+        <a class="spaced" href="/updates/" title="updates">All Updates</a>
+    </div>
+</div>
+
+{# Tags module #}
+<div class="closable module" id="popular-tags">
+    <span class="opener"></span><span class="head">Popular tags</span>
+    <div class="body">
+        {% popular_writing_tags 4 as base_tags %}
+        {% for tag in base_tags %}
+        <a href="/writing/?tags={{ tag }}" title="{{ tag }}">{{ tag }}</a>
+        {% endfor %}
+    </div>
+</div>
+
+{# Search module #}
+<div class="module" id="search">
+	<form action="http://www.google.com/search">
+		<input type="hidden" name="sitesearch" value="natesoares.com" />
+		<input type="text" name="q" />
+		<input id="google-search" type="submit" value="Search" />
+		<label for="google-search">Powered by google</label>
+	</form>
+</div>

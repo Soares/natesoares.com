@@ -1,0 +1,6 @@
+{% extends 'recent.html' %}
+{% load utilities %}
+
+{% block head %}Recent Updates{% endblock %}
+{% block note %}Published: {{ item.updated|datetime }}{% endblock %}
+{% block plural %}updates{% endblock %}

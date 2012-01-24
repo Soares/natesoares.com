@@ -1,0 +1,45 @@
+{% extends "threads/list.html" %}
+{% load utilities %}
+{% load tags %}
+
+
+{% block head %}
+<h1>Archives for {{ month|date:"%B of %Y" }}</h1>
+{% endblock %}
+
+{% block subhead %}
+<span>Filtered by date</span>
+<br>
+<a class="novisit" href="/threads/{{ q }}">Filter by name</a>
+{% endblock %}
+
+
+
+{% block object %}
+{% load threads %}
+<a class="entry" href="{{ object|url:exclusive }}{{ q }}" title="{{ object.published|date }}">{{ object }}</a>
+{% endblock %}
+
+
+{% block navigation %}
+
+{% record left_nav %}
+    <a href="/archives/{{ first_month|date:"%Y/%m/" }}{{ q }}" title="{{ first_month|date }}">First</a>
+    <a href="/archives/{{ previous_month|date:"%Y/%m/" }}{{ q }}" title="{{ previous_month|date }}"><b class="symbol">&#x00AB;</b> Previous</a>
+{% endrecord %}
+
+{% record right_nav %}
+    {% if next_month %}
+    <a href="/archives/{{ next_month|date:"%Y/%m/" }}{{ q }}" title="{{ next_month|date }}">Next <b class="symbol">&#x00BB;</b></a>
+    <a href="/archives/{{ latest_month|date:"%Y/%m/" }}{{ q }}" title="{{ latest_month|date }}">Newest</a>
+    {% else %}
+    <span class="broken">Next <b class="symbol">&#x00BB;</b></span>
+    <span class="broken">Newest</span>
+    {% endif %}
+{% endrecord %}
+
+{% endblock %}
+
+
+{% block subinfo_center %}
+{% endblock %}

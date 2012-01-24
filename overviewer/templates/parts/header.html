@@ -1,0 +1,12 @@
+{% load utilities %}
+{% if not 5|chance %}
+<a id="top" class="big" href="/">
+    <img src="/media/images/headers/big/dragon2.png">
+    <span>NateSoares.com</span
+</a>
+{% else %}
+<a id="top" href="/">
+    <img src="{% random_image "images/headers/small" %}">
+    <span>NateSoares.com</span
+</a>
+{% endif %}

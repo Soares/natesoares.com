@@ -1,0 +1,26 @@
+.even td.extra-col {
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+}
+
+.odd td.extra-col {
+    border-left: 2px solid #b0e0f0;
+    border-right: 2px solid #b0e0f0;
+}
+
+#items .item.link a {
+    color: black;
+    background-color: inherit;
+}
+
+#items .item.link a:hover {
+    text-decoration: none;
+}
+
+#items .item.link.odd:hover {
+    background: #9cd;
+}
+
+#items .item.link.even:hover {
+    background: #ccc;
+}

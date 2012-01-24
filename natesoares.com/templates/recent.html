@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load update_help %}
+{% load utilities %}
+{% load tags %}
+
+
+{% block style %}
+{{ block.super }}
+{{ "listing"|style }}
+{{ "updates"|style }}
+{% endblock %}
+
+
+{% block main %}
+<h1>
+    {% block head %}
+    {% endblock %}
+</h1>
+<div id="items">
+    {% for item in items %}
+    <div class="link item {% cycle "odd" "even" %}">
+        <a href="{{ item.get_absolute_url }}">
+            <span class="left">{{ item }}</span>
+            <span class="right">{% block note %}{% endblock %}</span>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+
+{% block enddata %}
+<form id="update-form" action="">
+    <label for="update-form-count">Most recent </label><input type="text" id="update-form-count" name="count" value="{{ count }}" /><span> {% block plural %}{% endblock %},</span>
+    <label for="update-form-tags">with items tagged </label><input type="text" id="update-form-tags" name="tags" value="{{ tags|sendable_tags }}" />
+    <input type="submit" value="Update" />
+</form>
+{{ block.super }}
+{% endblock %}

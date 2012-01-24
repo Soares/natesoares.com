@@ -1,0 +1,150 @@
+a[href] {
+    color: blue;
+    background-color: inherit;
+    text-decoration: none;
+}
+
+a[href]:hover {
+    text-decoration: underline;
+}
+
+#background {
+    background: #888;
+}
+
+#right .module {
+    background: white;
+    border: 3px solid black;
+
+    border-radius: 1em;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+}
+
+#right .module a, #items .tags input {
+    text-decoration: none;
+    color: #666;
+    background: #eee;
+    border: 1px solid #ccc;
+}
+
+#right .module a:hover, #items .tags input:hover {
+    text-decoration: none;
+    background: #ccc;
+    border: 1px solid #aaa;
+}
+
+#search [type=submit] {
+	font-size: 80%;
+	font-weight: bold;
+}
+
+label[for=google-search] {
+	background-color: inherit;
+	color: #888;
+}
+
+#main-column, tr, th, td {
+    border: 0;
+}
+
+#main-column {
+	overflow: hidden;
+}
+
+#main-column tr.first .main {
+    background: white;
+    border-right: 1px solid black;
+}
+
+.navigation a, #location a {
+    color: #999;
+    background-color: inherit;
+}
+
+.navigation a:hover, #location a:hover {
+    color: #666; text-decoration: none;
+    background-color: inherit;
+}
+
+#uppernav {
+    border-bottom: 1px solid black;
+}
+
+#location {
+    color: #666;
+    background-color: inherit;
+}
+
+#head .header {
+    font-size: 32px;
+}
+
+#head .subheader {
+    color: #999;
+    background-color: inherit;
+}
+
+#head .summary h3 {
+    background-color: inherit;
+    color: blue;
+}
+
+#head .summary:hover h3 {
+    text-decoration: underline;
+}
+
+#summary {
+    background: #eee;
+    color: #444;
+    border: 3px solid #aaa
+}
+
+#detail td, #detail th {
+    padding: .1em;
+}
+
+#detail th {
+    padding-right: 2em;
+}
+
+#enddata {
+    border: 1px solid black;
+    border-left: 0;
+    border-top: 0;
+    color: #666;
+    min-height: 1em;
+
+    -moz-border-radius: 0 0 1em 0;
+    -webkit-border-bottom-right-radius: 1em;
+}
+
+#enddata ul {
+    color: black;
+    background-color: inherit;
+}
+
+#lowernav {
+    background: white;
+    border: 1px solid black;
+    border-left: 0;
+    min-height: 1em;
+
+    -moz-border-radius: 0 1em 0 0;
+    -webkit-border-top-right-radius: .5em;
+}
+
+#footer {
+    background-color: black;
+    color: white;
+}
+
+#footer a {
+    color: white;
+    background-color: inherit;
+}
+
+#footer a:hover {
+    color: #999;
+    background-color: inherit;
+}

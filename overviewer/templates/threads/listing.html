@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load utilities %}
+{% load threads %}
+{% load section %}
+{% load tags %}
+
+
+{% block style %}
+{{ block.super }}
+{% style "list" %}
+{% endblock %}
+
+
+{% with tags|rqualify:"tag" as t %}
+{% block first %}
+{% if page_obj.has_next %}<a href="{% listing section "last" %}{{ t }}">{% recall say_first %}</a>{% endif %}
+{% endblock %}
+{% block previous %}
+{% if page_obj.has_next %}<a href="{% listing section page_obj.next_page_number %}{{ t }}">{% recall say_prev %}</a>{% endif %}
+{% endblock %}
+
+
+{% block next %}
+{% if page_obj.has_next %}<a href="{% listing section page_obj.previous_page_number %}{{ t }}">{% recall say_next %}</a>{% endif %}
+{% endblock %}
+{% block newest %}
+{% if page_obj.has_next %}<a href="{% listing section 1 %}{{ t }}">{% recall say_newest %}</a>{% endif %}
+{% endblock %}
+{% endwith %}
+
+
+{% block title %}NateSoares.com: {{ section.model|plural }}{% endblock %}
+
+
+{% block head %}
+<h1>{{ section.model|single|title }} listing</h1>
+{% endblock %}
+
+
+{% block content %}
+<div class="rowlinks">
+    {% for object in object_list %}
+    <div class="row {% cycle "" "" "" "spaced" %}">
+        <span class="name">
+            {% block object %}
+            <a class="entry" href="{{ object.get_absolute_url }}" title="{{ object.subtext }}">{{ object }}</a>
+            {% endblock %}
+        </span>
+        <span class="right">
+            {% for tag in object.tags.all %}
+                {% if tag.name|is_in:tags %}
+                <a class="selected tag" href="./{% block unkeepers %}{% endblock %}">{{ tag }}</a>{% if not forloop.last %}, {% endif %}
+                {% else %}
+                    <a class="tag" href="?{% block keepers %}{% endblock %}tag={{ tag }}">{{ tag }}</a>{% if not forloop.last %}, {% endif %}
+                {% endif %}
+            {% endfor %}
+        </span>
+    </div>
+    {% empty %}
+    <span class="message">{{ message|default:"There seems to be nothing here." }}</span>
+    {% endfor %}
+</div>
+{% endblock %}
+
+
+{% block subinfo_center %}
+<span>Page {{ page_obj.number }} of {{ paginator.num_pages }}</span>
+{% endblock %}

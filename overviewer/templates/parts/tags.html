@@ -1,0 +1,29 @@
+<div id="tags">
+    <h6>Tags</h6>
+    {% load tags %}
+    {% load section %}
+    {% load utilities %}
+    {% get_tags as all_tags %}
+    <ul>
+        {% for tag in all_tags %}
+            {% if object %}
+                <li>
+                    <a class="{% if tag|is_in:object.tags.all %}has{% endif %}" href="{% section_default section %}?tag={{ tag }}">{{ tag|title }}</a>
+                </li>
+            {% else %}
+            {% if tag.name|is_in:tags %}
+                <li><a href="./" class="selected">{{ tag|title }}</a></li>
+            {% else %}
+            {% if section %}
+                <li><a href="?tag={{ tag }}">{{ tag|title }}</a></li>
+            {% else %}{# We are in a flatpage or some other non-section page #}
+                <li><a href="{% archives sections.0 %}?tag={{ tag }}">{{ tag|title }}</a></li>
+            {% endif %}
+            {% endif %}
+            {% endif %}
+                
+        {% empty %}
+            <li>None</li>
+        {% endfor %}
+    </ul>
+</div>

@@ -1,0 +1,72 @@
+#comments {
+    width: 80%;
+    max-width: 1000px;
+    margin: 2em auto;
+    font-size: 18px;
+
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+#comments .bubble {
+    margin: 1em;
+    padding: 1em;
+    width: 100%;
+}
+
+#comments form {
+    width: 100%;
+}
+
+#comments form h6 {
+    font-weight: normal;
+    margin-bottom: 1em;
+}
+
+#comments form table {
+    width: 100%;
+}
+
+#comments form table tr {
+    display: none;
+}
+
+#comments form table tr.add {
+    text-align: right;
+    font-size: 80%;
+}
+
+#comments form table tr.add input {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+#comments form table tr.field-comment,
+#comments form table tr.field-name,
+#comments form table tr.field-url,
+#comments form table tr.add {
+    display: table-row;
+}
+
+#comments form [name=preview] {
+    display: none;
+}
+
+#comments form th {
+    vertical-align: top;
+}
+
+#comments form td [type=text],
+#comments form textarea {
+    width: 100%;
+}
+
+#comments form textarea {
+    height: 5em;
+}
+
+#comments .comment .name {
+    margin-bottom: 1em;
+}

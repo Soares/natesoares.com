@@ -1,0 +1,20 @@
+{% load commentutils %}
+<div class="comments">
+    {% get_comments_for object as comments %}
+    {% if depth|comment_depth_exceeded and object|comment_count %}
+    <div class="comment">
+        <div class="container">
+            <div class="content continue">
+                <a class="novisit" href="/comments/continue/{{ object.id }}/" target="_blank">
+                    Continue this thread &rarr;
+                </a>
+            </div>
+        </div>
+        <div class="comments"></div>
+    </div>
+    {% else %}
+    {% for comment in comments %}
+    {% include "comments/comment.html" %}
+    {% endfor %}
+    {% endif %}
+</div>

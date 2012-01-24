@@ -1,0 +1,45 @@
+{% extends 'base_detail.html' %}
+{% load utilities %}
+
+{% block script %}
+{{ block.super }}
+{{ "summarizer"|script }}
+{% endblock %}
+
+{% block uppernav %}
+{% include 'writing/parts/entry_nav.html' %}
+{% endblock %}
+
+{% block location %}
+{% if parent %}
+<div>
+    Viewing {{ object|plural }} of {{ parent }}
+    [<a href="{{ object.get_absolute_url }}" title="Clear">clear</a>]
+</div>
+{% endif %}
+{{ block.super }}
+{% endblock %}
+
+{% block head %}
+{{ block.super }}
+{% if object.summary %}
+<div class="summary" title="{{ object.summary }}"><h3>Summary</h3><div id="summary">{{ object.summary|markdown }}</div></div>
+{% endif %}
+{% endblock %}
+
+
+{% block links %}
+{% if object.projects.not_empty or object.activities.not_empty or object.jobs.not_empty %}
+    <h6>This entry is about:</h6>
+    <ul>
+        {% with object.projects.all as rels %}{% include 'writing/parts/rel.html' %}{% endwith %}
+        {% with object.activities.all as rels %}{% include 'writing/parts/rel.html' %}{% endwith %}
+        {% with object.jobs.all as rels %}{% include 'writing/parts/rel.html' %}{% endwith %}
+    </ul>
+{% endif %}
+{% endblock %}
+
+
+{% block lowernav %}
+{% include 'writing/parts/entry_nav.html' %}
+{% endblock %}

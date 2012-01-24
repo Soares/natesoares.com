@@ -1,0 +1,14 @@
+{% extends "bare.html" %}
+{% load utilities %}
+
+{% block style %}
+{{ block.super }}
+{% style "bare" %}
+{% endblock %}
+
+{% block main %}
+<div id="main">
+    {% block content %}
+    {% endblock %}
+</div>
+{% endblock %}

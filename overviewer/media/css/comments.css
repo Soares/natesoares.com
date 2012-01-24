@@ -1,0 +1,93 @@
+@import url('addform.css');
+@import url('editcomment.css');
+
+#comments {
+    margin: 0;
+    padding: 3em;
+    padding-bottom: 0;
+    overflow: hidden;
+
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+#comments .comments {
+    border-left: 1px dashed #444;
+    margin-left: 2em;
+    padding: 2em 0 0 2em;
+    overflow: auto;
+}
+#comments .comment .container {
+    max-width: 800px;
+    min-width: 400px;
+    overflow: auto;
+}
+#comments .container {
+    padding: 0;
+    background: white;
+
+    border: 1px solid black;
+    -moz-border-radius: .5em;
+    -webkit-border-radius: .5em;
+
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+#comments .edited { color: #AAA; }
+#comments .comment a.r-c { float: right; margin: .4em; }
+#comments .comment a.close { margin: .3em; }
+#comments .comment .name {
+    float: left;
+    margin: .1em .6em;
+    font-size: 90%;
+}
+#comments .comment .date {
+    float: left;
+    margin: .2em .6em;
+    font-size: 80%;
+    color: #888;
+}
+#comments .comment .content {
+    clear: both;
+    padding: 1.2em .8em;
+    font-size: 18px;
+    overflow: auto;
+}
+#comments .comment .removed {
+    color: #888;
+    padding: .4em;
+    font-size: 16px;
+    overflow: auto;
+}
+#comments .comment .bottom {
+    border-top: 1px solid black;
+    padding: 0 .2em;
+}
+#comments .comment .top {
+    overflow: auto;
+    border-bottom: 1px solid black;
+    padding: 0 .2em;
+}
+#comments .closed .top, #comments .closed .bottom { border: 0; }
+#comments .comment .continue { padding: .2em 1em; font-size: 80%; }
+#comments .input { background: #eee; }
+#comments textarea { font-size: 14px; }
+
+#comments .count .container { padding: 1em; overflow: auto; clear: both; }
+#comments .content p:last-child { margin-bottom: 0; }
+
+#comments .loading {
+    margin-bottom: 2em;
+    font-size: 80%;
+}
+
+
+form.content textarea { width: 100%; min-height: 5em; }
+form.content .right { font-size: 14px; }
+form.content .password { margin-left: 1em; }
+
+#login-register input { padding: 0; margin: 0; }
+#login-register .left { border-right: 1px solid black; width: 50%; }

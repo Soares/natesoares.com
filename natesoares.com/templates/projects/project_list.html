@@ -1,0 +1,48 @@
+{% extends 'base_list.html' %}
+{% load utilities %}
+{% load projects %}
+
+
+{% block style %}
+{{ block.super }}
+{{ "project"|style:"style0/" }}
+{% endblock %}
+
+
+{% block title %}Projects and Ideas{% endblock %}
+
+
+{% block head %}
+<h2>Projects and Ideas</h2>
+{% endblock %}
+
+{% block pre-description %}
+<p>
+	This is a place where I keep an index of all projects that I am working on.
+	Check below the projects for a description of each project phase.
+</p>
+{% endblock %}
+
+
+{% block post-description %}
+<ol class="p">
+	<li><span class="phase-idea">Idea:</span> something I plan on doing or think would be a good idea, but am not currently working on.</li>
+	<li><span class="phase-design">Design:</span> an idea in the design phase; something just getting started.</li>
+	<li><span class="phase-development">Development:</span> something that is an active work in progress.</li>
+	<li><span class="phase-hiatus">Hiatus:</span> a project that was at one point in active development, but is currently suspended.</li>
+	<li><span class="phase-abandoned">Abandoned:</span> projects aren't finished, they are abandoned:
+	these projects will probably never see the light of day.</li>
+	<li><span class="phase-finished">Finished:</span> a tag reserved for those few projects that have
+	a very specific conclusion (usually school assignments and the like).
+	Most projects are marked "Abandoned" or "Public", never "Finished".</li>
+	<li><span class="phase-public">Public:</span> a project that is probably still being worked on and improved,
+	but is currently open and at a functional stage.</li>
+</ol>
+{% endblock %}
+
+
+{% block extra_columns %}
+<td class="right-align extra-col" nowrap="nowrap">
+    Phase: <span class="phase-{{ object.phase|phase|lower }}">{{ object.phase|phase }}</span>
+</td>
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load tags %}
+{% load utilities %}
+
+
+{% block script %}
+    {{ block.super }}
+    {{ "rowlinks"|script }}
+{% endblock %}
+
+
+{% block style %}
+    {{ block.super }}
+    {{ "listing"|style }}
+{% endblock %}
+
+
+{% block title %}{{ model|name_plural }}{% endblock %}
+
+
+{% block uppernav %}
+{% include 'parts/list_nav.html' %}
+{% endblock %}
+
+
+{% block main %}
+    {# The header #}
+    <div id="head" class="listing">
+        {% block head %}
+        <h1 class="header">{{ model|name_plural }}</h1>
+        {% endblock %}
+		{% block subhead %}
+		<h2 class="subheader">
+			{% if tags %}
+			Viewing {{ model|name_plural }} tagged {{ tags|display_tags }}
+			{% endif %}
+		</h2>
+		{% endblock %}
+    </div>
+
+	
+	{# A description before the listing #}
+    <div id="pre-description" class="description">
+        {% block pre-description %}
+        {% endblock %}
+    </div>
+
+
+    {# The table or other message #}
+    {% block body %}
+    {% if object_list.count %}
+        <table id="items">
+            {% for object in object_list.all %}
+            <tr class="item {% cycle "odd" "even" %}">
+                <td class="core">
+                    <a href="{{ object.get_absolute_url }}{{ qualifier }}" title="{{ object.brief }}">{{ object }}</a>
+                </td>
+				{% block extra_columns %}
+				{% endblock %}
+                <td class="nowrap">
+                    <form class="tags" action="">
+                        <label>Tags: </label>
+                        {% for link in object.tags.all %}
+                        <input type="submit" name="tags" value="{{ link.tag.name }}" />
+                        {% empty %}
+                        <span class="none">None</span>
+                        {% endfor %}
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <div id="message">
+            {# The message to display when there is nothing here #}
+            {% block message %}
+            There seems to be nothing here.
+            {% endblock %}
+        </div>
+    {% endif %}
+    {% endblock %}
+
+
+    {# A description after the listing #}
+    <div id="post-description" class="description">
+        {% block post-description %}
+        {% endblock %}
+    </div>
+{% endblock %}
+
+
+{% block lowernav %}
+{% include 'parts/list_nav.html' %}
+{% endblock %}

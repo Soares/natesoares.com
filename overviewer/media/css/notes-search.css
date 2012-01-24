@@ -1,0 +1,15 @@
+#notes-search {
+    vertical-align: top;
+    padding: .5em;
+    font-size: 14px;
+    color: #999;
+}
+
+#notes { float: left; }
+#notes .option { margin: .5em 1em; }
+#notes .first { margin-right: 1em; }
+#notes .smallgrey { font-size: 14px; font-family: Roman sans-serif; }
+
+#search { float: right; }
+#search label { font-size: 10px; }
+#search input[type=submit] { font-family: arial; }

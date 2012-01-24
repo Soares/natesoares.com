@@ -1,0 +1,8 @@
+<p><a href="/about/">About Nate</a></p><br>
+{% for s in sections %}
+    {% ifnotequal s section %}
+    {% if not s.private %}
+        {% with s as section %}{% include "parts/new.html" %}{% endwith %}
+    {% endif %}
+    {% endifnotequal %}
+{% endfor %}

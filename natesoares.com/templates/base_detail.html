@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load tags %}
+{% load utilities %}
+{% load comments %}
+
+
+{% block script %}
+    {{ block.super }}
+    {{ "ajax-form"|script }}
+    {{ "comments"|script }}
+{% endblock %}
+
+
+{% block style %}
+    {{ block.super }}
+    {{ "style0/detail"|style }}
+{% endblock %}
+
+
+{% block title %}{{ object }}{% endblock %}
+
+
+{% block main %}
+<div id="positioner">
+    {# The little top-right tags bar #}
+    <div id="location">
+        {% block location %}
+        {% if tags %}
+            <div>
+                Viewing {{ object|plural }} tagged {{ tags|display_tags }}
+                [<a href="{{ object.get_absolute_url }}" title="Clear tags">clear</a>]
+            </div>
+            <div>
+                Other tags on this {{ object|single }}:
+                {% for link in object.tags|noneof:tags %}
+                <a href="{{ object.get_absolute_url }}?tags={{ link.tag }}">{{ link.tag }}</a>{% if not forloop.last %}, {% endif %}
+                {% empty %}
+                None
+                {% endfor %}
+            </div>
+        {% else %}
+            Tags: 
+            {% for link in object.tags.all %}
+            <a href="{{ object.get_absolute_url }}?tags={{ link.tag }}">{{ link.tag }}</a>{% if not forloop.last %}, {% endif %}
+            {% empty %}
+            None
+            {% endfor %}
+        {% endif %}
+        {% endblock %}
+    </div>
+
+    {# The title and subtitle #}
+    <div id="head">
+        {% block head %}
+        {% block name %}
+        <h1 class="header">
+            {{ object.name }}
+        </h1>
+        {% endblock %}
+        {% block subheader %}
+        <h2 class="subheader">
+            {{ object.brief }}
+        </h2>
+        {% endblock %}
+        {% endblock %}
+    </div>
+
+    {# The content (marked down by default) #}
+    <div id="content">
+        {% block content %}
+        {{ object.content|markdown }}
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}
+
+
+{% block outside %}
+<div id="comments">
+    {% block comments %}
+
+    {# Comment count #}
+    {% get_comment_count for object as comment_count %}
+    <div class="intro bubble">{{ comment_count }} Comment{{ comment_count|pluralize }}</div>
+
+    {# Comments #}
+    {% get_comment_list for object as comment_list %}
+    {% for comment in comment_list %}
+    <div class="comment bubble">
+        <div class="name">
+            {% if comment.url %}
+            <a href="{{ comment.url }}" title="Website of {{ comment.name }}">{{ comment.name }}</a>
+            {% else %}
+            {{ comment.name }}
+            {% endif %} says:
+        </div>
+        <div class="content">{{ comment.comment }}</div>
+    </div>
+    {% endfor %}
+
+    {# Comment form #}
+    {% get_comment_form for object as form %}
+    <form class="bubble" action="{% comment_form_target %}" method="post">
+        <input type="hidden" name="next" value="{{ object.get_absolute_url }}{{ qualifier }}" />
+        <h6>Add a comment:</h6>
+        <table>
+            {% for field in form %}
+            <tr class="field-{{ field.name }}">
+                <th class="nowrap">{{ field.label }}:</th>
+                <td>{{ field }}</td>
+            </tr>
+            {% endfor %}
+            <tr class="add">
+                <th></th>
+                <td>
+                    <input type="submit" name="post" value="Post" />
+                </td>
+            </tr>
+        </table>
+    </form>
+    {% endblock %}
+</div>
+{% endblock %}
+
+
+{% block enddata %}
+<div class="links">
+    {# Relevant links #}
+    {% block links %}
+    {% endblock %}
+</div>
+<div class="info">
+    {# Relevant information #}
+    {% block info %}
+	{% if object.published %}
+    <span class="note">
+        Published on {{ object.published|datetime }}.
+    </span>
+	{% endif %}
+    {% if not object.published|same_time:object.upadted %}
+    <span class="note">
+        Last updated on {{ object.updated|datetime }}.
+    </span>
+    {% endif %}
+    {% endblock %}
+</div>
+{% endblock %}

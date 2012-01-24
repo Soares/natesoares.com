@@ -1,0 +1,134 @@
+{% extends "bare.html" %}
+{% load utilities %}
+
+
+{% block remember %}
+    {% record say_first %}First{% endrecord %}
+    {% record say_prev %}<b class="symbol">&#x00AB;</b> Previous{% endrecord %}
+    {% record say_next %}Next <b class="symbol">&#x00BB;</b>{% endrecord %}
+    {% record say_newest %}Newest{% endrecord %}
+{% endblock %}
+
+
+{% block notes %}
+{% include "parts/notes.html" %}
+{% endblock %}
+
+
+{% block main %}
+<div id="head-nav">
+    <div id="head" class="upper">
+        {% block head %}
+        {% endblock %}
+        <span class="start-symbol">
+            <!--&#x25C9;-->
+            &#x273A;
+        </span>
+        <hr />
+    </div>
+
+    <div id="uppernav-inner" class="uppernav navigation">
+        <div id="top-previous" class="first">
+            {% record previous %}
+            {% block previous %}
+            {% endblock %}
+            {% endrecord %}
+            {% recall previous %}
+        </div>
+        <div id="top-next" class="last">
+            {% record next %}
+            {% block next %}
+            {% endblock %}
+            {% endrecord %}
+            {% recall next %}
+        </div>
+    </div>
+
+    <div id="uppernav-outer" class="uppernav navigation">
+        <div id="top-first" class="first">
+            {% record first %}
+            {% block first %}
+            {% endblock %}
+            {% endrecord %}
+            {% recall first %}
+        </div>
+        <div id="top-newest" class="last">
+            {% record newest %}
+            {% block newest %}
+            {% endblock %}
+            {% endrecord %}
+            {% recall newest %}
+        </div>
+    </div>
+</div>
+
+<div id="spacer" class="spacer">
+    {% block subhead %}
+    {% endblock %}
+</div>
+
+<div id="center-block">
+
+    <div id="left-side" class="side">
+        <div id="tags-new" class="lower">
+            {% include "parts/new.html" %}
+            <br>
+            {% block tags %}{% include "parts/tags.html" %}{% endblock %}
+        </div>
+    </div>
+
+
+    <div id="right-side" class="side">
+        <div id="other" class="lower">
+            {% include "parts/other.html" %}
+        </div>
+    </div>
+
+
+    <div id="center">
+        <div id="center" class="lower">
+            <div id="content">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div id="subinfo">
+    <div id="subinfo-center">
+        {% block subinfo_center %}
+        {% endblock %}
+    </div>
+    <div class="right">
+        {% block when %}
+        {% endblock %}
+    </div>
+</div>
+
+
+<div id="comments">
+    {% block comments %}
+    {% endblock %}
+</div>
+
+
+<div id="lowernav">
+    <div id="bottom-prev" class="navigation">
+        {% recall first %}
+        {% recall previous %}
+    </div>
+    <div id="bottom-next" class="navigation">
+        {% recall next %}
+        {% recall newest %}
+    </div>
+    <div id="bottom-top" class="navigation">
+        {% block totop %}
+        <a id="to-top" href="#top">Top</a>
+        {% endblock %}
+    </div>
+</div>
+
+{% endblock %}

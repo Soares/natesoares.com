@@ -1,0 +1,6 @@
+{% extends 'recent.html' %}
+{% load utilities %}
+
+{% block head %}Recent Changes{% endblock %}
+{% block note %}Changed: {{ item.updated|datetime }}{% endblock %}
+{% block plural %}changes{% endblock %}

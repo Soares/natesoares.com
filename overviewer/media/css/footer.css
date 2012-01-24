@@ -1,0 +1,11 @@
+#footer {
+    color: #BBB;
+    background: black;
+    font-size: 14px;
+    padding: .7em;
+    overflow: auto;
+    clear: both;
+}
+
+#footer a { color: white; }
+#footer a:hover { color: #BBB; }

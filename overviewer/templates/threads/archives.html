@@ -1,0 +1,48 @@
+{% extends "threads/listing.html" %}
+{% load utilities %}
+{% load threads %}
+{% load section %}
+
+
+{% block head %}
+<h1>{{ section.model|single|title }} archives for {{ month|date:"%B %Y" }}</h1>
+{% endblock %}
+
+
+
+
+{% block first %}
+<a href="{% archives section first_month.year first_month.month %}{{ tags|rqualify:"tag" }}" title="{{ first_month|date }}">{% recall say_first %}</a>
+{% endblock %}
+
+
+{% block previous %}
+<a href="{% archives section previous_month.year previous_month.month %}{{ tags|rqualify:"tag" }}" title="{{ previous_month|date }}">
+    {% recall say_prev %}
+</a>
+{% endblock %}
+
+
+{% block next %}
+{% if next_month %}
+<a href="{% archives section next_month.year next_month.month %}{{ tags|rqualify:"tag" }}" title="{{ next_month|date }}">{% recall say_next %}</a>
+{% else %}
+<span class="broken">{% recall say_next %}</span>
+{% endif %}
+{% endblock %}
+
+
+{% block newest %}
+{% if next_month %}
+<a href="{% archives section this_month.year this_month.month %}{{ tags|rqualify:"tag" }}" title="{{ this_month|date }}">{% recall say_newest %}</a>
+{% else %}
+<span class="broken">{% recall say_newest %}</span>
+{% endif %}
+{% endblock %}
+
+
+{% block subinfo_center %}
+<a href="{% archives section previous_month.year previous_month.month %}{{ tags|rqualify:"tag" }}" title="{{ previous_month|date }}">
+    Previous months
+</a>
+{% endblock %}

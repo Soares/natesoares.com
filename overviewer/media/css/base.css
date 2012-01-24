@@ -1,0 +1,35 @@
+@import url('global.css');
+@import url('pygments.css');
+@import url('section.css');
+@import url('header.css');
+@import url('notes-search.css');
+@import url('navigation.css');
+@import url('head.css');
+@import url('sides.css');
+@import url('content.css');
+@import url('footer.css');
+
+#head-nav { clear: both; padding-top: 3em; overflow: auto; }
+
+#spacer {
+    text-align: center;
+    margin-bottom: 3em;
+    clear: both;
+    padding-top: 4em;
+}
+#spacer span { color: #888; }
+
+#center-block { clear: both; overflow: auto; }
+#center-block .upper { height: 72px; }
+
+#subinfo { background: white; overflow: auto; padding: .5em; }
+#subinfo span, #subinfo a, #subinfo a:visited { font-size: 13px; color: #888; }
+#subinfo-center { margin: 0 auto; text-align: center; }
+
+#comments {
+    clear: both;
+    background: #888;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    min-height: 4em;
+}

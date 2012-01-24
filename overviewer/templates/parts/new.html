@@ -1,0 +1,15 @@
+{% if section %}
+{% load utilities %}
+<div class="relevant">
+    <h6>{{ section.model|single|title }} updates</h6>
+    {% load threads %}
+    <ul>
+        {% for update in section.recent_updates %}
+            <li><a {% ifequal update object.ancestor %}class="selected"{% endifequal %}
+                   href="{{ update.get_absolute_url }}" title="{{ update.subtext }}">{{ update }}</a></li>
+        {% empty %}
+            <li>None</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}

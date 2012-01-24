@@ -1,0 +1,8 @@
+#comments .bubble {
+    background: white;
+    border: 3px solid black;
+    
+    border-radius: 1em;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+}

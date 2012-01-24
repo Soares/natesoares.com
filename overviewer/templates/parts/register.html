@@ -1,0 +1,12 @@
+<form method="post" action="/register/">
+    <input type="hidden" name="next" value="{{ next }}">
+    <table>
+        <tr><th>Name:</th><td><input type="text" name="username"></td></tr>
+        <tr><th>Password:</th><td><input type="password" name="password"></td></tr>
+        <tr class="hidden">
+            <th>Enter something here if you don't want an account:</th>
+            <td><input type="text" class="hidden" name="honeypot"></td>
+        </tr>
+    </table>
+    <input class="post" type="submit" name="register" value="register">
+</form>

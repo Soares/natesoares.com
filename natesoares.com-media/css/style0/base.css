@@ -1,0 +1,11 @@
+.odd, .even {
+    border-bottom: 2px solid #888;
+}
+
+.odd {
+    background: #bef;
+}
+
+.even {
+    background: white;
+}

@@ -1,0 +1,47 @@
+{% extends "threads/thread.html" %}
+{% load utilities %}
+{% load threads %}
+
+
+{% block style %}
+{{ block.super }}
+{% style "entry" %}
+{% endblock %}
+
+
+{% block subhead %}
+<span class="monospaced">
+    {{ object.rank|add:1 }} of {{ object.parent.entries.count }} in
+    {% with object.parent as parent %}
+    <a href="{{ parent.get_absolute_url }}" title="{{ parent.subtext }}">{{ parent }}</a>
+    {% endwith %}
+</span>
+{% endblock %}
+
+
+{% block first %}{% endblock %}
+{% block previous %}
+    <a href="{{ previous.get_absolute_url }}" title="{{ previous }}">{% recall say_prev %}</a>
+{% endblock %}
+{% block next %}
+    <a href="{{ next.get_absolute_url }}" title="{{ next }}">{% recall say_next %}</a>
+{% endblock %}
+{% block newest %}{% endblock %}
+
+
+{% block content %}
+{% record tree %}
+<ul class="entries">
+    {% with object as self %}
+    {% with object|depth|add:1 as depth %}
+    {% with object.ancestor as object %}
+    {% include "parts/entries.html" %}
+    {% endwith %}
+    {% endwith %}
+    {% endwith %}
+</ul>
+{% endrecord %}
+
+{{ object.content|markdown }}
+<div class="bottom">{% recall tree %}</div>
+{% endblock %}

@@ -1,0 +1,3 @@
+{{ comment.name }} on {{ comment.submit_date|date }}:
+
+{{ comment.comment }}

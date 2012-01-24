@@ -1,0 +1,3 @@
+{% for rel in rels %}
+<li><a href="{{ rel.get_absolute_url }}" title="{{ rel }}">{{ rel }}</a></li>
+{% endfor %}

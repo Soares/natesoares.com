@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load utilities %}
+
+
+{% block style %}
+{{ block.super }}
+{% style "black-tie/jquery-ui"  %}
+{% style "comments" %}
+{% style "continue" %}
+{% endblock %}
+
+
+{% block script %}
+{{ block.super }}
+{% script "jquery" %}
+{% script "jquery-ui" %}
+{% script "cookie" %}
+{% script "ajaxforms" %}
+{% script "comments" %}
+{% if object.ancestor.enable_comments %}
+{% script "opencomments" %}
+{% endif %}
+{% endblock %}
+
+
+{% block main %}
+{% with object.ancestor as ancestor %}
+<div id="comments">
+    <div class="count">
+        <div class="container">
+            <a href="{{ ancestor.get_absolute_url }}#comment-top" title="{{ ancestor.subtext }}">{{ ancestor }}</a> (continued)
+        </div>
+    </div>
+    <div class="comments">
+        {% with comment_depth as depth %}
+        {% with object as comment %}
+        {% include "comments/comment.html" %}
+        {% endwith %}
+        {% endwith %}
+    </div>
+</div>
+{% endwith %}
+{% endblock %}

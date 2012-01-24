@@ -1,0 +1,88 @@
+{% load utilities %}
+{% load commentutils %}
+{% with comment.id|slugify as id %}{# This needs to be a string so that ifequals will work on it #}
+<div class="comment">
+    <div class="container" id="comment-{{ comment.id }}">
+        <a name="comment-{{ comment.id }}"></a>
+        {% if comment.is_removed %}
+
+            <div class="removed">
+                <div class="left">
+                    (Comment removed)
+                    {% if user.is_staff %}
+                        {% load threads %}
+                        <a class="smallblue" href="{{ comment|edit_url }}">[edit]</a>
+                    {% endif %}
+                </div>
+                {% if comment.has_comments %}
+                    <div class="right"></div>
+                {% endif %}
+            </div>
+
+        {% else %}
+
+            <div class="top">
+                <span class="name">{{ comment.name }}{% if comment.edited %}<span class="edited">*</span>{% endif %}</span>
+                <div class="right">
+                    <span class="date">{{ comment.show_time }}</span>
+                    {% ifequal user comment.user %}
+                        {% ifequal id edit %}
+                        <a class="smallgrey edit" href="./#comment-{{ id }}">[cancel]</a>
+                        {% else %}
+                        <a class="smallgrey edit" href="./?edit={{ id }}#comment-{{ id }}">[edit]</a>
+                        {% endifequal %}
+                    {% endifequal %}
+                </div>
+            </div>
+            <form class="content {% ifnotequal id edit %}hidden{% endifnotequal %}" method="post" action="{% url comments.views.edit id %}">
+                <input class="input" type="hidden" name="next" value="{{ ancestor.get_absolute_url }}#comment-{{ id }}">
+                <textarea class="input" name="comment">{{ comment.comment }}</textarea>
+                <input type="submit" class="right post" value="update">
+            </form>
+            <div class="content {% ifequal id edit %}hidden{% endifequal %}">
+                {{ comment.render }}
+            </div>
+
+
+            {% if ancestor.enable_comments or user.is_staff %}
+            <div class="bottom">
+
+                {% if user.is_staff %}
+                <form class="left staff-aide" action="{% url comments.views.remove id %}" method="post">
+                    {% load threads %}
+                    <a class="smallblue goto-edit" href="{{ comment|edit_url }}">[edit]</a>
+                    <input type="submit" class="smallblue remove" value="[remove]">
+                </form>
+                {% endif %}
+
+                {% if ancestor.enable_comments %}
+                {% ifequal id reply_to %}
+                    <a href="#comment-{{ id }}" class="smallgrey r-c cancel">[cancel]</a>
+                {% else %}
+                    <a href="?reply_to={{ id }}#comment-{{ id }}" class="smallgrey r-c reply">[reply]</a>
+                {% endifequal %}
+                {% endif %}
+
+            </div>
+            {% endif %}
+
+        {% endif %}
+    </div>
+
+    {% if ancestor.enable_comments %}
+    {% ifequal id reply_to %}
+    {% with comment as object %}
+    {% include "comments/addform.html" %}
+    {% endwith %}
+    {% endifequal %}
+    {% endif %}
+
+    {% with depth|add:-1 as depth %}
+    {% with comment as object %}
+    {# We have to force laziness in this include or we get an infinite loop #}
+    {% with "comments/showcomments.html" as file %}{% include file %}{% endwith %}
+    {% endwith %}
+    {% endwith %}
+
+</div>
+{% endwith %}

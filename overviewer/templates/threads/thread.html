@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% load utilities %}
+{% load section %}
+{% load threads %}
+
+
+{% block style %}
+{{ block.super }}
+{% style "black-tie/jquery-ui"  %}
+{% style "comments" %}
+{% endblock %}
+
+
+{% block script %}
+{{ block.super }}
+{% script "jquery" %}
+{% script "jquery-ui" %}
+{% script "cookie" %}
+{% script "ajaxforms" %}
+{% script "comments" %}
+{% if object.enable_comments %}
+{% script "opencomments" %}
+{% endif %}
+{% endblock %}
+
+
+{% block feeds %}
+{{ block.super }}
+{% with section|feed:object as link %}{% with section|feed_title:object as title %}
+{% feeds link title %}
+{% endwith %}{% endwith %}
+{% endblock %}
+
+
+{% block title %}{{ object }}{% endblock %}
+
+
+{% block head %}
+<h1 title="{{ object.subtext }}">{{ object}}</h1>
+{% endblock %}
+
+
+{% block subhead %}
+{% if object.began %}
+<h3 class="head">
+    {{ object.began|date }} -
+    {% if object.ended %}{{ object.ended|date }}{% else %}Present{% endif %}
+</h3>
+{% endif %}
+{% with object|entries:user as entries %}
+{% if entries.not_empty %}
+    {% with entries.first as entry %}
+    <span>First entry: <a href="{{ entry.get_absolute_url }}" title="{{ entry.subtext }}">{{ entry }}</a></span>
+    {% endwith %}
+{% endif %}
+{% endwith %}
+{% endblock %}
+
+
+{% block first %}
+{% if first %}
+    <div class="goto first">
+        <span><a href="{{ first.get_absolute_url }}" title="{{ first }}">{% recall say_first %}</a></span>
+        {% with "first" as direction %}{% include "parts/goto.html" %}{% endwith %}
+    </div>
+{% else %}
+    <span class="broken goto first">{% recall say_first %}</span>
+{% endif %}
+{% endblock %}
+
+{% block previous %}
+{% if previous %}
+    <div class="goto previous">
+        <span><a href="{{ previous.get_absolute_url }}" title="{{ previous }}">{% recall say_prev %}</span>
+        {% with "previous" as direction %}{% include "parts/goto.html" %}{% endwith %}
+    </div>
+{% else %}
+    <span class="broken goto previous">{% recall say_prev %}</span>
+{% endif %}
+{% endblock %}
+
+{% block next %}
+{% if next %}
+    <div class="goto next">
+        <span><a href="{{ next.get_absolute_url }}" title="{{ next }}">{% recall say_next %}</a></span>
+        {% with "next" as direction %}{% include "parts/goto.html" %}{% endwith %}
+    </div>
+{% else %}
+    <span class="broken goto next">{% recall say_next %}</span>
+{% endif %}
+{% endblock %}
+
+{% block newest %}
+{% if newest %}
+    <div class="goto newest">
+        <span><a href="{{ newest.get_absolute_url }}" title="{{ newest }}">Newest</a></span>
+        {% with "newest" as direction %}{% include "parts/goto.html" %}{% endwith %}
+    </div>
+{% else %}
+    <span class="broken goto newest">{% recall say_newest %}</span>
+{% endif %}
+{% endblock %}
+
+
+{% block content %}
+{% record tree %}
+{% if object.entries.count or object.parent %}
+<ul class="entries">
+    {% with object as self %}
+    {% with object.ancestor as object %}
+    {% with -1 as depth %}
+    {% include "parts/entries.html" %}
+    {% endwith %}
+    {% endwith %}
+    {% endwith %}
+</ul>
+{% endif %}
+{% endrecord %}
+
+{{ object.content|markdown }}
+<div class="bottom">{% recall tree %}</div>
+
+{% endblock %}
+
+
+{% block when %}
+{% load utilities %}
+
+{% if object.published %}
+    <span>Published on {{ object.published|date }}.</span>
+{% endif %}
+
+{% if object.updated and not object.updated|same_day:object.published %}
+    <span>Last updated on {{ object.updated|date }}.</span>
+{% endif %}
+{% endblock %}
+
+
+{% block comments %}
+{% include "comments/comments.html" %}
+{% endblock %}

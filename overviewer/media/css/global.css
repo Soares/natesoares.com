@@ -1,0 +1,16 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-size: 18px;
+    font-family: Roman;
+}
+
+#background { background: black; min-height: 100%; }
+#color { background: white; }
+
+a[href] { text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:active { color: blue; }
+a:visited { color: #80F; }
+a.novisit:visited { color: blue; }

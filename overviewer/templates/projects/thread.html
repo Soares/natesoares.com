@@ -1,0 +1,24 @@
+{% extends "threads/thread.html" %}
+{% load threads %}
+{% load utilities %}
+
+
+{% block style %}
+{{ block.super }}
+{% style "project" %}
+{% endblock %}
+
+
+{% block subhead %}
+{% with object|entries:user as entries %}
+{% if entries.not_empty %}
+    {% with entries.first as entry %}
+    <h3 class="head">First entry: <a href="{{ entry.get_absolute_url }}" title="{{ entry.subtext }}">{{ entry }}</a></h3>
+    {% endwith %}
+{% endif %}
+{% endwith %}
+<h3 class="head">Began on {{ object.began|date }}</h3>
+<h4 class="head">
+    Status: <span class="{{ object.phase_string|slugify }}">{{ object.phase_status|title }}</span>
+</h4>
+{% endblock %}

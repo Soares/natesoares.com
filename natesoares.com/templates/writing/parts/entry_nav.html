@@ -1,0 +1,27 @@
+<table class="navigation">
+    <tr>
+        <td class="left">
+            {% if first %}
+            <a class="first" href="{{ first.get_absolute_url }}{{ qualifier }}" title="{{ first }}">First</a>
+            {% endif %}
+            {% if previous %}
+            <a class="previous" href="{{ previous.get_absolute_url }}{{ qualifier }}" title="{{ previous }}"><b class="symbol">&#x00AB;</b> Previous</a>
+            {% endif %}
+        </td>
+        <td class="middle">
+            {% if parent %}
+            <a class="up" href="{{ parent.get_absolute_url }}">{{ parent }}</a>
+            {% else %}
+            <a class="up" href="/writing/{{ qualifier }}">Archives</a>
+            {% endif %}
+        </td>
+        <td class="right">
+            {% if next %}
+            <a class="next" href="{{ next.get_absolute_url }}{{ qualifier }}" title="{{ next }}">Next <b class="symbol">&#x00BB;</b></a>
+            {% endif %}
+            {% if latest %}
+            <a class="latest" href="{{ latest.get_absolute_url }}{{ qualifier }}" title="{{ latest }}">Newest</a>
+            {% endif %}
+        </td>
+    </tr>
+</table>

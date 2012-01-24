@@ -1,0 +1,132 @@
+html, body {
+    font-size: 20px;
+}
+
+tr, th, td {
+    padding: 0;
+}
+
+#right .module {
+    padding: .5em 1em;
+    text-align: center;
+    overflow: hidden;
+}
+
+#right .module span {
+    overflow: hidden;
+}
+
+#right .module a {
+    display: block;
+    font-size: 18px;
+    overflow: hidden;
+    padding: .1em .5em;
+}
+
+label[for=google-search] {
+	font-size: 50%;
+}
+
+#main-column .main.navigation {
+    text-align: center;
+}
+
+#main {
+    padding: 1em 3em;
+    padding-bottom: 3em;
+}
+
+#location {
+    text-align: right;
+    font-size: 80%;
+}
+
+#location div {
+    padding: .2em 0;
+}
+
+#head .subheader {
+    font-size: 85%;
+}
+
+#head .summary {
+    font-size: 85%;
+    cursor: pointer;
+}
+
+#head .summary h3 {
+    font-size: 85%;
+    font-weight: normal;
+}
+
+#summary {
+    padding: 1em;
+    padding-bottom: 0;
+}
+
+#message {
+    padding-top: 1em;
+}
+
+#items .item .tags .none {
+    padding: .4em .2em;
+}
+
+#enddata {
+    padding: .3em 1em;
+}
+
+#enddata .links h6 {
+    font-size: 17px;
+}
+
+#enddata ul {
+    font-size: 15px;
+}
+
+#enddata .info {
+    font-size: 14px;
+}
+
+table.navigation {
+    padding: 0;
+}
+
+table.navigation .left {
+    padding-left: 1em;
+    text-align: left;
+}
+
+table.navigation .right {
+    padding-right: 1em;
+    text-align: right;
+}
+
+#lowernav {
+    padding: .3em;
+}
+
+#footer {
+    padding: .5em;
+    font-size: 14px;
+}
+
+#content {
+    padding-left: 4em;
+    font-family: helvetica, sans-serif;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+#content code {
+	font-size: 80%;
+	background: #eee;
+	padding: .1em 0;
+	line-height: 80%;
+}
+
+td.right-align {
+    text-align: right;
+    padding-right: .5em;
+    padding-left: .5em;
+}

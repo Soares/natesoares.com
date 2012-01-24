@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+{% load utils %}
+<html>
+    <head>
+        <title>{{ object }}</title>
+        {% style "base" %}
+    </head>
+    <body>
+        <table><tr><td id="links-td">
+        <div id="links">
+            {% block links %}
+            <ul class="section" id="static">
+                <li><a href="/">Home</a></li>
+                <li><a href="/summary/">Road Map</a></li>
+            </ul>
+            <div class="section" id="incoming">
+                <h6>Incoming links</h6>
+                <ul>
+                    {% for e in object.incoming.all %}
+                    <li><a href="{{ e.get_absolute_url }}" {% if e.is_stub %}class="stub"{% endif %} title="{{ e.brief }}">{{ e }}</a></li>
+                    {% empty %}
+                    <li>None</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="section" id="outgoing">
+                <h6>Outgoing links</h6>
+                <ul>
+                    {% for e in object.real_outgoing %}
+                    <li><a href="{{ e.get_absolute_url }}" title="{{ e.brief }}">{{ e }}</a></li>
+                    {% empty %}
+                    <li>None</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            {% if user.is_staff %}
+            <form method="post" class="section" id="administration">
+                <a href="{{ object|edit_url }}">[edit]</a>
+                {% if object.content %}
+                    {% if not object.published %}
+                    <input class="warning submit-link" type="submit" name="publish" value="[publish]">
+                    {% else %}
+                    <input class="submit-link" type="submit" name="pull" value="[pull]">
+                    {% endif %}
+                {% endif %}
+            </form>
+            {% endif %}
+            {% endblock %}
+        </div>
+        </td><td id="content-td">
+        <div id="content">
+            <div id="head">
+                <h1>{{ object }}</h1>
+                <h2>{{ object.brief }}</h2>
+            </div>
+            <div id="text">
+                {% block content %}
+                {% if object.is_stub or not object.shown %}
+                    {% if user.is_staff and object.content %}
+                        {{ object.render }}
+                        {% else %}
+                        This entry is a stub. Check back later.
+                    {% endif %}
+                {% else %}
+                    {{ object.render }}
+                {% endif %}
+
+                {% if object.next or object.previous %}
+                <div id="nextprev">
+                    {% if object.next %}
+                    <a id="next" href="{{ object.next.get_absolute_url }}">{{ object.next }} &rarr;</a>
+                    {% endif %}
+                    {% if object.previous %}
+                    <a id="previous" href="{{ object.previous.get_absolute_url }}">&larr; {{ object.previous }}</a>
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                {% endblock %}
+            </div>
+        </div>
+        </td></tr></table>
+    </body>
+</html>

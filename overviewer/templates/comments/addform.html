@@ -1,0 +1,42 @@
+{% load comments %}
+<div class="add">
+    <div class="left curvy curvy-left">
+        <div class="uncurvy"></div>
+    </div>
+    {% get_comment_form for object as form %}
+    <form action="{% comment_form_target %}" method="post" class="left">
+        <input type="hidden" name="nopreview" value="true">
+        {% if ancestor %}
+        <input type="hidden" name="next" value="{{ ancestor.get_absolute_url }}">
+        {% else %}{# We've been called asynchronously #}
+        <input type="hidden" name="next" value="{% url comments.views.new %}">
+        {% endif %}
+
+        {% for field in form %}
+        {% ifnotequal field.name "name" %}
+        {% ifnotequal field.name "comment" %}
+        <div class="hidden">{{ field.label }}: {{ field }} (Not visible)</div>
+        {% endifnotequal %}
+        {% endifnotequal %}
+        {% endfor %}
+
+        {% if user.is_authenticated %}
+            <span class="smallgrey">Posting as {{ user }}.</span>
+            <a class="smallblue logout" href="/logout/?next={{ object.get_absolute_url }}">[logout]</a>
+        {% else %}
+            <input class="input" name="name" type="text"><br>
+            <label>Name</label><a href="/login/" class="smallblue login" title="Allows you to edit your comments.">[login or register]</a><br>
+        {% endif %}
+
+        <textarea class="input" name="comment"></textarea>
+        <span class="left smallgrey">
+            <a class="smallgrey" href="http://daringfireball.net/projects/markdown/syntax">Markdown</a> works, html doesn't.
+        </span>
+        <div class="right">
+            <input class="post" type="submit" value="Post">
+        </div>
+    </form>
+    <div class="left curvy curvy-right">
+        <div class="uncurvy"></div>
+    </div>
+</div>

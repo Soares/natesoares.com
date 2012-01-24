@@ -1,0 +1,31 @@
+#phase .body {
+    font-weight: bold;
+}
+
+.phase-idea {
+    color: #88f;
+}
+
+.phase-design {
+    color: #488;
+}
+
+.phase-development {
+    color: #080;
+}
+
+.phase-hiatus {
+    color: #BB0;
+}
+
+.phase-abandoned {
+    color: #F00;
+}
+
+.phase-finished {
+    color: #808;
+}
+
+.phase-public {
+    color: #00C;
+}

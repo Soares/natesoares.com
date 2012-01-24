@@ -1,0 +1,34 @@
+#update-form {
+    width: 100%;
+    text-align: center;
+    padding: .5em;
+}
+
+#update-form [name=count] {
+    width: 2em;
+}
+
+#update-form [type=submit] {
+    padding: .1em;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+#items .link {
+	overflow: hidden;
+}
+
+#items .item a {
+    width: 100%;
+    padding: 8px 1em;
+    font-size: 20px;
+    display: block;
+    line-height: 32px;
+    overflow: hidden;
+
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}

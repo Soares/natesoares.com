@@ -1,0 +1,27 @@
+{% load utilities %}
+{% load archives %}
+<table class="navigation">
+    <tr>
+        <td class="left">
+            {% if first_month %}
+            <a class="first" href="{{ first_month|link:qualifier }}">First</a>
+            {% endif %}
+            {% if previous_month %}
+            <a class="previous" href="{{ previous_month|link:qualifier }}"><b class="symbol">&#x00AB;</b> Previous</a>
+            {% endif %}
+        </td>
+        <td class="middle">
+            {% if tags %}
+            <a href="{{ month|link }}">Clear tags</a>
+            {% endif %}
+        </td>
+        <td class="right">
+            {% if next_month %}
+            <a class="next" href="{{ next_month|link:qualifier }}">Next <b class="symbol">&#x00BB;</b></a>
+            {% endif %}
+            {% if latest_month %}
+            <a class="latest" href="{{ latest_month|link:qualifier }}">Newest</a>
+            {% endif %}
+        </td>
+    </tr>
+</table>

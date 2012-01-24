@@ -1,0 +1,28 @@
+#content .rowlinks { font-size: 18px; margin-left: 4em; }
+#content .rowlinks .row.spaced { margin-bottom: 2em; }
+#content .rowlinks {
+    width: 80%;
+
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+#content .rowlinks .row {
+    padding: 0;
+    overflow: auto;
+    padding: .2em .1em .1em .1em;
+    border-bottom: 1px solid black;
+}
+#content .rowlinks .row:hover { border-bottom-color: #aaa; }
+#content .rowlinks a.entry { cursor: pointer; color: blue; }
+
+#content .rowlinks a.tag { color: #888; }
+#content .rowlinks a.tag:hover { color: #aaa; }
+#content .rowlinks a.tag.selected { color: black; }
+#content .rowlinks a.tag.selected:hover { color: black; text-decoration: underline; }
+
+#content .rowlinks .row .name { float: left; }
+
+#content .rowlinks .day.row { border-bottom: 0; margin-top: 2em; margin-left: -2em; }
+#content .rowlinks .day.row:first-child { margin-top: 0; }

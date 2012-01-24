@@ -1,0 +1,8 @@
+.section.selected { font-weight: bold; }
+.section { text-decoration: none; margin: 1em; }
+.section:hover { text-decoration: underline; }
+.section.writing, .section.writing:visited { color: #00F; }
+.section.projects, .section.projects:visited { color: #80F; }
+.section.tutorials, .section.tutorials:visited { color: #08F; }
+.section.activities, .section.jobs { display: none; }
+.section.selected, .section.selected:visited { color: black; }

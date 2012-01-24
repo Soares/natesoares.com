@@ -1,0 +1,33 @@
+@import url('entries.css');
+
+#content {
+    max-width: 800px;
+    font-size: 22px;
+    font-family: serif;
+    line-height: 1.5em;
+    padding-bottom: 2em;
+    margin: 0 auto;
+    text-align: left;
+}
+
+#content table { overflow: auto; }
+#content p { margin-bottom: 1.2em; }
+#content ol.p li { margin: .2em; }
+#content code {
+    display: inline-block;
+    font-size: 80%;
+}
+#content pre code {
+    margin-left: 2em;
+}
+#content p + pre { margin-top: -12px; }
+#content blockquote { font-family: serif; font-style: italic; color: #444; }
+#content p.img { text-align: center; }
+#content p.img img { margin: 1em; }
+
+#content .summary { display: none; }
+#content .notes {
+    margin-top: 3em;
+    border-top: 1px solid #333;
+    font-size: 12px; color: #666;
+}

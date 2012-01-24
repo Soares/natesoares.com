@@ -1,0 +1,8 @@
+{% load tags %}
+{% load utilities %}
+
+{% if not tags %}
+<a href="..">All {{ model|plural|title }}</a>
+{% else %}
+<a href="../{{ qualifier }}">{{ model|plural|title }} tagged {{ tags|display_tags }}</a>
+{% endif %}

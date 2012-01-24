@@ -1,0 +1,18 @@
+#top {
+    display: block;
+    background: black;
+    vertical-align: middle;
+    padding: 2em;
+    overflow: auto;
+    position: relative;
+}
+#top.big { padding: 0; text-align: center; }
+#top:hover { text-decoration: none; }
+#header img { float: left; border: 0; max-width: 100%; }
+#header span {
+    color: white;
+    bottom: 2em;
+    right: 2em;
+    position: absolute;
+}
+#top.big span { left: 1em; }

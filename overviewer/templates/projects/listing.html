@@ -1,0 +1,39 @@
+{% extends "threads/listing.html" %}
+{% load utilities %}
+{% load threads %}
+
+
+{% block style %}
+{{ block.super }}
+{% style "project" %}
+{% endblock %}
+
+
+{% block subhead %}
+<div class="spacer-phase-offset">
+    {% for phase in section.model.phases %}
+        {% if phase|slugify|is_in:phases %}
+            <a class="all selected phase {{ phase|slugify }}" href="./{{ tags|rqualify:"tag" }}">{{ phase }}</a>
+        {% else %}
+            <a class="all phase {{ phase|slugify }}" href="?{{ tags|xqualify:"tag" }}phase={{ phase|slugify }}">{{ phase }}</a>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}
+
+
+{% block object %}
+{% with object.phase_string|slugify as phase %}
+{% if phase|is_in:phases %}
+<a class="phase {{ phase }}" href="./{{ tags|rqualify:"tag" }}">
+{% else %}
+<a class="phase {{ phase }}" href="?{{ tags|xqualify:"tag" }}phase={{ phase }}">
+{% endif %}
+{% endwith %}
+    {{ object.phase_status|capfirst }}
+<a>: {{ block.super }}
+{% endblock %}
+
+
+{% block keepers %}{{ phases|xqualify:"phase" }}{% endblock %}
+{% block unkeepers %}{{ phases|rqualify:"phase" }}{% endblock %}

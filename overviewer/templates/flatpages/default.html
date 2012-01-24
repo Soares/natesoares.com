@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load utilities %}
+
+{% block head %}
+<h1>{{ flatpage.title }}</h1>
+{% endblock %}
+
+{% block content %}
+{{ flatpage.content|markdown }}
+{% endblock %}

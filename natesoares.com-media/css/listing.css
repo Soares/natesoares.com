@@ -1,0 +1,19 @@
+#items {
+    width: 100%;
+    overflow: auto;
+    clear: both;
+
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+#items td.core {
+    width: 100%;
+}
+
+#items td {
+    height: 2em;
+    padding: .2em .8em;
+}

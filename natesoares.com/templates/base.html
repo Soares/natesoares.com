@@ -1,0 +1,106 @@
+{% comment %}
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+{% endcomment %}
+{% load utilities %}
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+        <title>{% block title %}Nate Soares{% endblock %}</title>
+        <!--
+            Why hello there, reader who took care to read the source of my web page! How are you feeling?
+            I try to keep this source as clean as possible, but as the page is dynamically generated, the
+            end result may not be too pretty. Feel free to snoop around or send me a question if you want
+            to know how or why something works. More importantly, if you see me doing something stupid,
+            then by all means please drop me a note with a suggestion or just a pointer or two. I'm pretty
+            new at this web design thing, so any hints would be very much appreciated.
+
+            Thank you for your time, and enjoy!
+
+            -Nate
+        -->
+        {% block script %}
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+        {{ "modules"|script }}
+        {{ "cookie"|script }}
+        {% endblock %}
+
+        {% block style %}
+        <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/reset/reset-min.css" />
+        <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/fonts/fonts-min.css" /> 
+        <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/base/base-min.css" /> 
+        {{ "utilities"|style }}
+        {{ "base"|style }}
+        {{ "pygments"|style }}
+        {{ "style0"|style:"style0/" }}
+        {% endblock %}
+
+        {% block feeds %}
+        <link href="/feeds/entries/" rel="alternate" type="application/rss+xml" title="Nate's Thoughts" />
+        <link href="/feeds/updates/" rel="alternate" type="application/rss+xml" title="Nate's Updates" />
+        <link href="/feeds/changes/" rel="alternate" type="application/rss+xml" title="Nate's Changes" />
+        <!-- Welcome, sly reader. If you want atom feeds instead of rss, try these links. I'd leave them in, but they cause clutter.
+        <link href="/feeds/atom-entries/" rel="alternate" type="application/atom+xml" title="(Atom) Nate's Thoughts" />
+        <link href="/feeds/atom-updates/" rel="alternate" type="application/atom+xml" title="(Atom) Nate's Updates" />
+        <link href="/feeds/atom-changes/" rel="alternate" type="application/atom+xml" title="(Atom) Nate's Changes" />
+        -->
+        {% endblock %}
+    </head>
+    <body>
+        <div id="background">
+            <div id="right">
+                {% block rightnav %}
+                {% include 'parts/modules.html' %}
+                {% endblock %}
+            </div>
+            <table id="main-column">
+                <tr class="first">
+                    <td class="topcell" id="top">
+                        <div id="header" class="main">
+                            {% block header %}
+                            {% include 'parts/header.html' %}
+                            {% endblock %}
+                        </div>
+                        <div id="uppernav" class="main navigation">
+                            {% block uppernav %}
+                            {% endblock %}
+                        </div>
+                        <div id="main" class="main">
+							{% block main %}
+							{% endblock %}
+                        </div>
+                        <div id="enddata" class="main">
+                            {% block enddata %}
+                            {% endblock %}
+                        </div>
+                    </td>
+                </tr>
+                <tr id="splitter">
+                    <td class="topcell">
+                        <div id="outside" class="main">
+                            {% block outside %}
+                            &nbsp;
+                            {% endblock %}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="topcell">
+                        <div id="lowernav" class="main navigation">
+                            {% block lowernav %}
+                            {% endblock %}
+                        </div>
+                        <div id="footer">
+                            {% block footer %}
+                            {% include 'parts/footer.html' %}
+                            {% endblock %}
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+   </body>
+</html>
